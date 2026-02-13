@@ -112,3 +112,14 @@ def search(user_id) :
         "name" : app.users[user_id]['name'],
         "email" : app.users[user_id]['email']
     })
+
+@app.route("/user", methods = ['GET'])
+def user():
+    nopassword = {}
+    for key,info in app.users.items():
+        info_copy = info.copy()
+        del info_copy['password']
+        nopassword[key] = info_copy
+    
+    return jsonify({"users": nopassword})
+    
