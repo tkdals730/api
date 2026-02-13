@@ -105,6 +105,8 @@ def timeline(user_id):
 # ```
 @app.route("/search/<int:user_id>", methods = ['GET'])
 def search(user_id) :
+    if user_id not in app.users:
+        return '사용자가 존재하지 않습니다.', 400
     return jsonify({
         "id" : app.users[user_id]['id'],
         "name" : app.users[user_id]['name'],
