@@ -103,4 +103,10 @@ def timeline(user_id):
 # ```bash
 # http -v GET localhost:5000/timeline/1
 # ```
-
+@app.route("/search/<int:user_id>", methods = ['GET'])
+def search(user_id) :
+    return jsonify({
+        "id" : app.users[user_id]['id'],
+        "name" : app.users[user_id]['name'],
+        "email" : app.users[user_id]['email']
+    })
